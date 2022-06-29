@@ -7,7 +7,12 @@ module.exports = ({ env }) => ({
       database: env('DATABASE_NAME', 'learning'),
       user: env('DATABASE_USERNAME', 'tomrot'),
       password: env('DATABASE_PASSWORD', 'vnng2018'),
-      ssl: env.bool('DATABASE_SSL', false),
+      ssl: {
+        rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false), // For self-signed certificates
+      },
     },
+  },
+  options: {
+    ssl: env.bool('DATABASE_SSL', false),
   },
 });
